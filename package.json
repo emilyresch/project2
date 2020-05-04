@@ -19,8 +19,13 @@
   },
   "homepage": "https://github.com/emilyresch/project2#readme",
   "dependencies": {
+    "@material/animation": "^6.0.0",
+    "@material/card": "^6.0.0",
+    "@material/textfield": "^6.0.0",
+    "@material/top-app-bar": "^6.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "material-components-web": "^6.0.0",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.7",
     "sequelize-cli": "^5.5.1"
