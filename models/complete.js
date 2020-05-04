@@ -1,22 +1,22 @@
 module.exports = function (sequelize, DataTypes) {
-    var Wish = sequelize.define("Wishlist", {
+    var Complete = sequelize.define("Completed", {
         author: Sequelize.STRING,
         title: Sequelize.STRING,
         favorite: Sequelize.BOOLEAN,
         have_read: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: true
         }
     });
 
 
-    Wish.associate = function (models) {
-        //New book should belong to a USER
-        Wish.belongsTo(models.User, {
+    //A completed book should belong to a User
+    Complete.associate = function (models) {
+        Complete.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Wish;
+    return Complete;
 }
