@@ -2,7 +2,10 @@ module.exports = function (sequelize, DataTypes) {
     var Current = sequelize.define("Current", {
         author: Sequelize.STRING,
         title: Sequelize.STRING,
-        favorite: Sequelize.BOOLEAN
+        favorite: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
     });
 
 
