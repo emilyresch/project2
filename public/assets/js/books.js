@@ -1,4 +1,4 @@
-$(function() {
+// $(document).function() {
     //search button id
     var searchBooks = $("#");
 
@@ -9,7 +9,7 @@ $(function() {
         var bookName = $("#").val();
         apicallFunction(bookName);
         })
-    }) 
+  
     //book name id
     $("#").keypress(function(event){
         var keyCode = (event.keyCode ? event.keyCode : event.which);
@@ -22,7 +22,7 @@ $(function() {
 
     function apicallFunction(bookName) {
         var nameArray = bookName.split(" ");
-        
+
         var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + bookName;
         $.ajax({
             url: queryURL,
@@ -39,5 +39,4 @@ $(function() {
 
         });
     }
-
-});
+// })

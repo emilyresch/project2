@@ -6,7 +6,7 @@
 //     e.preventDefault();
     
 // });
-$(function() {
+// $(function() {
     var userInput = $("#user-input");
     var passwordInput = $("#password-input");
     console.log("hello");
@@ -77,4 +77,4 @@ $(function() {
             console.log(err);
           });
     }
-});
+// });
