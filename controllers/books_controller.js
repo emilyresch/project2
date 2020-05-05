@@ -1,16 +1,15 @@
 
 var db = require("../models");
 
-//homepage (login/signup)
-// router.get("/", function (req, res) {
-//     //render homepage
-//     res.render("index");
-// })
+// homepage (login/signup)
+router.get("/", function (req, res) {
+    //render homepage
+    res.render("index");
+})
 
 
 //post request for new user signup
 router.post("/api/signup", function (req, res) {
-
     db.User.create({
         username: req.body.username,
         password: req.body.password
@@ -32,15 +31,15 @@ router.get("/api/booksearch", function (req, res) {
     res.render("")
 })
 
+//post request when user inputs search credentials
 router.post("/api/booksearch/bookname", function(req, res){
 
 })
 
 //get request for search results from Books API
-router.get("/api/results", function (req, res) {
-    res.render("")
-})
-
+// router.get("/api/results", function (req, res) {
+//     res.render("")
+// })
 
 //update request when user favorites/unfavorites a book
 router.put("api/book/:id", function (req, res) {
