@@ -1,3 +1,4 @@
+//USER DATABASE INFO
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         username: {
@@ -28,5 +29,5 @@ module.exports = function (sequelize, DataTypes) {
         })
     };
 
-    return User;
+    // return User;
 }

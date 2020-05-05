@@ -1,3 +1,4 @@
+//COMPLETED BOOKS
 module.exports = function (sequelize, DataTypes) {
     var Complete = sequelize.define("Completed", {
         author: Sequelize.STRING,
@@ -21,5 +22,5 @@ module.exports = function (sequelize, DataTypes) {
             }
         });
     };
-    return Complete;
+    // return Complete;
 }

@@ -1,3 +1,4 @@
+//CURRENTLY READING
 module.exports = function (sequelize, DataTypes) {
     var Current = sequelize.define("Current", {
         author: Sequelize.STRING,
@@ -6,6 +7,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        currently: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        }
     });
 
 
@@ -18,5 +23,5 @@ module.exports = function (sequelize, DataTypes) {
             }
         });
     };
-    return Current;
+    // return Current;
 }
