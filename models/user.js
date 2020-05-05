@@ -21,12 +21,9 @@ module.exports = function (sequelize, DataTypes) {
         User.hasMany(models.Wish, {
             onDelete: "cascade"
         });
-        User.hasMany(models.Complete, {
+        User.hasMany(models.Completed, {
             onDelete: "cascade"
         });
-        User.hasOne(models.Current, {
-            onDelete: "cascade"
-        })
     };
 
     return User;

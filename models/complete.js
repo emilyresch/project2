@@ -1,8 +1,8 @@
 //COMPLETED BOOKS
 module.exports = function (sequelize, DataTypes) {
-    var Complete = sequelize.define("Completed", {
-        author: Sequelize.STRING,
-        title: Sequelize.STRING,
+    var Completed = sequelize.define("Completed", {
+        author: DataTypes.STRING,
+        title: DataTypes.STRING,
         favorite: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -15,12 +15,12 @@ module.exports = function (sequelize, DataTypes) {
 
 
     //A completed book should belong to a User
-    Complete.associate = function (models) {
-        Complete.belongsTo(models.User, {
+    Completed.associate = function (models) {
+        Completed.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Complete;
+    return Completed;
 }
