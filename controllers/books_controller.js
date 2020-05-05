@@ -1,4 +1,4 @@
-
+var router = require("express").Router();
 var db = require("../models");
 
 // homepage (login/signup)
@@ -72,19 +72,6 @@ router.put("api/book/:id", function (req, res) {
     });
 })
 
-//update request for moving wishlist book to current book
-router.put("api/book/:id", function (req, res) {
-    db.Wish.update({
-        currently: req.body.currently
-    }, {
-        where: {
-            id: req.body.id
-        }
-    }).then(function (data) {
-        res.json(data);
-    })
-})
-
 //update request for moving wishlist book to completed books
 router.put("api/book/:id", function (req, res) {
     db.Wish.update({
@@ -104,9 +91,6 @@ router.get("api/booklists", function (req, res) {
         res.json(data);
     })
     db.Complete.findAll({}).then(function (data) {
-        res.json(data);
-    })
-    db.Current.findAll({}).then(function (data) {
         res.json(data);
     })
 })

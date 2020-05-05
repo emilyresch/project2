@@ -21,6 +21,7 @@
   "dependencies": {
     "@material/animation": "^6.0.0",
     "@material/card": "^6.0.0",
+    "@material/data-table": "^6.0.0",
     "@material/textfield": "^6.0.0",
     "@material/top-app-bar": "^6.0.0",
     "express": "^4.17.1",
