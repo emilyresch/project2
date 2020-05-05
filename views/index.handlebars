@@ -2,8 +2,8 @@
 
 <div class="mdc-card" id="sign-form" style="width:75%; margin-left:auto; margin-right:auto;">
     <!-- Username -->
-    <label class="mdc-text-field mdc-text-field--outlined" style="margin:20px">
-        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
+    <label class="mdc-text-field mdc-text-field--outlined">
+        <input type="text" class="mdc-text-field__input" id="user-input" aria-labelledby="my-label-id">
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
             <span class="mdc-notched-outline__notch">
@@ -14,8 +14,8 @@
     </label>
 
     <!-- Password -->
-    <label class="mdc-text-field mdc-text-field--outlined" style="margin:20px">
-        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
+    <label class="mdc-text-field mdc-text-field--outlined">
+        <input type="text" class="mdc-text-field__input" id="password-input" aria-labelledby="my-label-id">
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
             <span class="mdc-notched-outline__notch">
@@ -27,14 +27,14 @@
 
     <div class="mdc-touch-target-wrapper" style="margin:auto">
         <!-- Sign up button-->
-        <button class="mdc-button mdc-button--touch">
+        <button class="mdc-button mdc-button--touch" id="signUpButton">
             <div class="mdc-button__ripple"></div>
             <span class="mdc-button__label">Sign Up</span>
             <div class="mdc-button__touch"></div>
         </button>
 
         <!-- Sign in button-->
-        <button class="mdc-button mdc-button--touch">
+        <button class="mdc-button mdc-button--touch" id="loginButton">
             <div class="mdc-button__ripple"></div>
             <span class="mdc-button__label">Sign In</span>
             <div class="mdc-button__touch"></div>

@@ -1,30 +1,27 @@
-//WISHLIST
+//CURRENTLY READING
 module.exports = function (sequelize, DataTypes) {
-    var Wish = sequelize.define("Wishlist", {
+    var Current = sequelize.define("Current", {
         author: Sequelize.STRING,
         title: Sequelize.STRING,
         favorite: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-        have_read: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        },
         currently: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: true
         }
     });
 
 
-    Wish.associate = function (models) {
-        //New book should belong to a USER
-        Wish.belongsTo(models.User, {
+    
+    Current.associate = function (models) {
+        //CURRENT should belong to a USER
+        Current.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Wish;
+    return Current;
 }
