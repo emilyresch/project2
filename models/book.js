@@ -1,3 +1,4 @@
+//WISHLIST
 module.exports = function (sequelize, DataTypes) {
     var Wish = sequelize.define("Wishlist", {
         author: Sequelize.STRING,
@@ -7,6 +8,10 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: false
         },
         have_read: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        currently: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
