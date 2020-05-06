@@ -4,7 +4,7 @@
     var addComplete = $('.read-btn');
 
     //search button onclick event
-    searchButton.on("click",function(event){
+    searchBooks.on("click",function(event){
         event.preventDefault();
         console.log("heiii");
         var bookName = searchBook.val().trim();

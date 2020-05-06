@@ -4,12 +4,12 @@ profileBtn.on("click", function(e){
     e.preventDefault();
     //
 
-    $.ajax("/api/book", {
+    $.ajax("/api/profile", {
         type: "GET",
         data: newBook
       }).then(
         function() {
-          console.log("created new Wishlist Book");
+          console.log("going to profile page");
           // Reload the page to get the updated list
           location.reload();
         })

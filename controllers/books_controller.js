@@ -173,11 +173,12 @@ router.put("/api/book/:id", function (req, res) {
 
 //get request for viewing wishlist and completed list
 router.get("/api/profile", function (req, res) {
-    db.Wish.findAll({}).then(function (data) {
-        res.json(data);
+    db.Wish.findAll({}).then(function (wishdata) {
+        res.render("displaytables", { wish: wishdata});
     })
-    db.Complete.findAll({}).then(function (data) {
-        res.json(data);
+
+    db.Complete.findAll({}).then(function (compdata) {
+        res.render("displaytables", { complete: compdata});
     })
 })
 
