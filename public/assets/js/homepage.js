@@ -33,7 +33,7 @@ function signUpUser(username, password) {
       password: password
     })
       .then(function(data) {
-        window.location.replace("/booksearch");
+        window.location.replace("/api/booksearch");
       })
       .catch(handleLoginErr);
 }
@@ -65,7 +65,7 @@ function loginUser(username, password) {
       password: password
     })
       .then(function() {
-        window.location.replace("/booksearch");
+        window.location.replace("/api/booksearch");
       })
       .catch(function(err) {
         console.log(err);

@@ -29,7 +29,7 @@ router.post("/api/login", function (req, res) {
 //get request for search page when user signs up/logs in
 router.get("/api/booksearch", function (req, res) {
     //search page
-    res.render("")
+    res.render("search")
 })
 
 //post request when user inputs search credentials
@@ -44,7 +44,7 @@ router.post("/api/booksearch/bookname", function(req, res){
 function newBook(newBookName){
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
-    var apiCall = axios.get(queryURL)
+    axios.get(queryURL)
     .then(function(response){
         console.log(response.data);
         for(var i=0; i<6; i++){
