@@ -1,5 +1,6 @@
 var router = require("express").Router();
 var db = require("../models");
+const axios = require('axios');
 
 // homepage (login/signup)
 router.get("/", function (req, res) {
@@ -28,13 +29,30 @@ router.post("/api/login", function (req, res) {
 //get request for search page when user signs up/logs in
 router.get("/api/booksearch", function (req, res) {
     //search page
-    res.render("")
+    res.render("search")
 })
 
 //post request when user inputs search credentials
 router.post("/api/booksearch/bookname", function(req, res){
-
+    var bookName = req.body.title;
+    var nameArray = bookName.split(" ");
+    var newBookName = nameArray.join("+");
+    var book = newBook(newBookName);  
+    res.render("search",{books: book});
 })
+
+function newBook(newBookName){
+    var bookArray = [];
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
+    axios.get(queryURL)
+    .then(function(response){
+        console.log(response.data);
+        for(var i=0; i<6; i++){
+            bookArray.push(apiData.items[i])
+        }
+    })
+    return bookArray
+}
 
 //get request for search results from Books API
 // router.get("/api/results", function (req, res) {
@@ -42,7 +60,7 @@ router.post("/api/booksearch/bookname", function(req, res){
 // })
 
 //update request when user favorites/unfavorites a book
-router.put("api/book/:id", function (req, res) {
+router.put("/api/book/:id", function (req, res) {
     db.Wish.update({
         favorite: req.body.favorite
     }, {
@@ -73,7 +91,7 @@ router.put("api/book/:id", function (req, res) {
 })
 
 //update request for moving wishlist book to completed books
-router.put("api/book/:id", function (req, res) {
+router.put("/api/book/:id", function (req, res) {
     db.Wish.update({
         have_read: req.body.have_read
     }, {
@@ -86,7 +104,7 @@ router.put("api/book/:id", function (req, res) {
 })
 
 //get request for viewing wishlist, current list, and completed list
-router.get("api/booklists", function (req, res) {
+router.get("/api/booklists", function (req, res) {
     db.Wish.findAll({}).then(function (data) {
         res.json(data);
     })

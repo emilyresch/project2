@@ -37,3 +37,12 @@ body {
     grid-column-start: 4;
   
 }
+#sign-form{
+    padding-top: 10%;
+}
+
+#inputText{
+    background-color: rgb(228, 203, 235);
+    margin-left: 5px;
+}
+
