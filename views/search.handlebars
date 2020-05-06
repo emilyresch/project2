@@ -17,17 +17,18 @@
     {{#each books}}
     <div class="mdc-layout-grid__inner">
         <div class="mdc-card mdc-card--outlined" style="padding:16px; height:350px; width:75%; margin:auto;">
-            <h5>{{this.volumeInfo.title}}</h5>
+            <h5>{{@index}}: {{this}}. {{this.volumeInfo.title}}</h5>
             <h6>{{this.volumeInfo.authors}}</h6>
             <p>{{this.volumeInfo.description}}</p>
             <a href="{{this.saleInfo.buyLink}}">Buy Book</a>
             <div class="mdc-card__action-icons">
-            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" 
+                {{> add/add-btn}}
+            {{!-- <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" 
                 aria-label="Mark as Read">bookmark_border</button>
             <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon"
                 aria-label="Wishlist">star_border</button>
             <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon"
-                aria-label="Favorite">favorite_border</button>
+                aria-label="Favorite">favorite_border</button> --}}
         </div>
         </div>
     </div>
