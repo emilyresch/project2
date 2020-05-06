@@ -22,6 +22,7 @@
     "@material/animation": "^6.0.0",
     "@material/card": "^6.0.0",
     "@material/data-table": "^6.0.0",
+    "@material/layout-grid": "^6.0.0",
     "@material/textfield": "^6.0.0",
     "@material/top-app-bar": "^6.0.0",
     "axios": "^0.19.2",

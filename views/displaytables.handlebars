@@ -1,73 +1,59 @@
-<h1>{{this.username}}'s Books</h1>
+<h1 class="tables-title">{{this.username}}'s Books</h1>
 
-{{!-- wishlist table --}}
-<div class="mdc-data-table">
-    <table class="mdc-data-table__table" aria-label="wishlist books">
-        <thead>
-            <tr class="mdc-data-table__header-row">
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Favorite</th>
-            </tr>
-        </thead>
-        <tbody class="mdc-data-table__content">
-            {{#each wish }}
-            {{#unless have_read}}
-            <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">{{this.title}}</td>
-                <td class="mdc-data-table__cell">{{this.author}}</td>
-                <td class="mdc-data-table__cell">{{this.favorite}}</td>
-            </tr>
-            {{/unless}}
-            {{/each}}
-        </tbody>
-    </table>
-</div>
+<div class="container-tables">
+    <div class="mdc-data-table table1">
+        <table class="mdc-data-table__table" aria-label="wishlist books">
+            <thead>
+                <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Favorite</th>
+                </tr>
+            </thead>
+            <tbody class="mdc-data-table__content">
+                 <h2>Wishlist</h2>
+                {{#each wish }}
+                {{#unless have_read}}
+                <tr class="mdc-data-table__row">
+                    <td class="mdc-data-table__cell">{{this.title}}</td>
+                    <td class="mdc-data-table__cell">{{this.author}}</td>
+                    {{#if favorite }}
+                    <td class="mdc-data-table__cell"><span
+                            class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+                            aria-label="Favorites"></span></td>
+                    {{/if}}
+                </tr>
+                {{/unless}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 
-{{!-- currently reading table --}}
-<div class="mdc-data-table">
-    <table class="mdc-data-table__table" aria-label="current books">
-        <thead>
-            <tr class="mdc-data-table__header-row">
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Favorite</th>
-            </tr>
-        </thead>
-        <tbody class="mdc-data-table__content">
-            {{#each current }}
-            {{#if currently }}
-            <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">{{this.title}}</td>
-                <td class="mdc-data-table__cell">{{this.author}}</td>
-                <td class="mdc-data-table__cell">{{this.favorite}}</td>
-            </tr>
-            {{/if}}
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-
-{{!-- completed books table --}}
-<div class="mdc-data-table">
-    <table class="mdc-data-table__table" aria-label="completed books">
-        <thead>
-            <tr class="mdc-data-table__header-row">
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
-                <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Favorite</th>
-            </tr>
-        </thead>
-        <tbody class="mdc-data-table__content">
-            {{#each complete }}
-            {{#if have_read }}
-            <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">{{this.title}}</td>
-                <td class="mdc-data-table__cell">{{this.author}}</td>
-                <td class="mdc-data-table__cell">{{this.favorite}}</td>
-            </tr>
-            {{/if}}
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="mdc-data-table table2">
+        <table class="mdc-data-table__table" aria-label="completed books">
+            <thead>
+                <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Favorite</th>
+                </tr>
+            </thead>
+            <tbody class="mdc-data-table__content">
+                <h2>Completed Books</h2>
+                {{#each complete }}
+                {{#if have_read }}
+                <tr class="mdc-data-table__row">
+                    <td class="mdc-data-table__cell">{{this.title}}</td>
+                    <td class="mdc-data-table__cell">{{this.author}}</td>
+                    {{#if favorite }}
+                    <td class="mdc-data-table__cell"><span
+                            class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+                            aria-label="Favorites"></span></td>
+                    {{/if}}
+                </tr>
+                {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
