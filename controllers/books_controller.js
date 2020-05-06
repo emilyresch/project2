@@ -173,13 +173,15 @@ router.put("/api/book/:id", function (req, res) {
 
 //get request for viewing wishlist and completed list
 router.get("/api/profile", function (req, res) {
-    db.Wish.findAll({}).then(function (wishdata) {
-        res.render("displaytables", { wish: wishdata});
-    })
+    console.log("got a GET request from profile")
+    res.send("Hi! THis is the profile page");
+    // db.Wish.findAll({}).then(function (wishdata) {
+    //     res.render("displaytables", { wish: wishdata});
+    // })
 
-    db.Complete.findAll({}).then(function (compdata) {
-        res.render("displaytables", { complete: compdata});
-    })
+    // db.Complete.findAll({}).then(function (compdata) {
+    //     res.render("displaytables", { complete: compdata});
+    // })
 })
 
 
