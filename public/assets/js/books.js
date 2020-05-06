@@ -1,41 +1,37 @@
 
-    var searchBooks = $("#searchButton");
+    var searchButton = $(".searchButton");
     var addWishlist = $('.wishlist-btn');
     var addComplete = $('.read-btn');
+    var searchBook = $(".booksearch");
 
     //search button onclick event
     searchButton.on("click",function(event){
         event.preventDefault();
         console.log("heiii");
-        var bookName = searchBook.val().trim();
-        
-
+        var title = searchBook.val().trim();
         // if(!bookName){
         //     return;
         // }
 
-        searchforBook(bookName);
+        searchforBook(title);
         
         // bookName.val("");
     })
-    function searchforBook(bookName){
-      console.log(bookName);
-        $.post("/api/booksearch/bookname",{
-            title: bookName
+    function searchforBook(title){
+      console.log(title);
+        $.post("/api/booksearch/title",{
+            title: title
         })
         .then(function(){
             console.log("Searching for book");
             // location.reload();
-            getBook(bookName)
+            getBook(title)
         })   
     }
 
-    function getBook(bookName){
-      $.get("/api/booksearch/bookname",{
-        title: bookName
-      })
-      .then(function(){
-        console.log("book book");
+    function getBook(bookTitle){
+      $.get("/api/booksearch/" + bookTitle).then(function(){
+        console.log(bookTitle);
       })
     }
 
