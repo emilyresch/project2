@@ -2,6 +2,7 @@ var router = require("express").Router();
 var db = require("../models");
 const axios = require('axios');
 var passport = require("../config/passport");
+var Sequelize = require("sequelize");
 
 // homepage (login/signup)
 router.get("/", function (req, res) {
@@ -9,7 +10,7 @@ router.get("/", function (req, res) {
     res.render("index");
 })
 
-router.get("/api/login", function(req,res) {
+router.get("/api/login", function (req, res) {
     if (req.user) {
         res.redirect("/api/booksearch");
     }
@@ -24,7 +25,7 @@ router.post("/api/signup", function (req, res) {
     }).then(function (data) {
         res.json(data);
         res.redirect(307, "/api/login");
-    }).catch(function(err) {
+    }).catch(function (err) {
         res.status(401).json(err);
     })
 
@@ -46,21 +47,21 @@ router.get("/api/booksearch", function (req, res) {
 router.get("/api/booksearch/bookname", function (req, res) {
     var bookName = req.body.title;
     console.log("success");
-    
+
     var nameArray = bookName.split(" ");
     var newBookName = nameArray.join("+");
-    newBook(newBookName, function(bookData){
+    newBook(newBookName, function (bookData) {
         res.render("search", {
-        books: bookData
-    });
+            books: bookData
+        });
     });
     // var bookData = newBook(newBookName)
     // console.log(bookData);
-    
+
     // res.render("search", {
     //     books: bookData
     // });
-    
+
 })
 
 router.post("/api/booksearch/bookname", function (req, res) {
@@ -69,16 +70,16 @@ router.post("/api/booksearch/bookname", function (req, res) {
     var newBookName = nameArray.join("+");
     // var book = newBook(newBookName);
     // res.json(book)
-    newBook(newBookName, function(bookData){
+    newBook(newBookName, function (bookData) {
         res.render("search", {
-        books: bookData
-    });
+            books: bookData
+        });
     });
 })
 
 function newBook(newBookName, cb) {
     console.log("addffsf");
-    
+
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
     axios.get(queryURL)
@@ -89,9 +90,9 @@ function newBook(newBookName, cb) {
                 bookArray.push(apiData.items[i])
             }
             console.log(bookArray);
-            cb(bookArray) 
+            cb(bookArray)
         })
-    
+
 }
 
 function newBook(newBookName) {
@@ -107,7 +108,7 @@ function newBook(newBookName) {
             // console.log(bookArray);
             return bookArray
         })
-    
+
 }
 
 // router.get("/api/booksearch/bookname", function (req, res) {
@@ -171,18 +172,27 @@ router.put("/api/book/:id", function (req, res) {
     })
 })
 
-//get request for viewing wishlist and completed list
+//get request for viewing completed list
 router.get("/api/profile", function (req, res) {
-    console.log("got a GET request from profile")
-    res.send("Hi! THis is the profile page");
-    // db.Wish.findAll({}).then(function (wishdata) {
-    //     res.render("displaytables", { wish: wishdata});
-    // })
+    console.log(db.Completed)
+    
+    db.Completed.findAll({}).then(function (compdata) {
+        res.render("profile", {
+            complete: compdata
+        });
+    })
 
-    // db.Complete.findAll({}).then(function (compdata) {
-    //     res.render("displaytables", { complete: compdata});
-    // })
 })
 
+router.get("/api/wishlist", function (req, res) {
+    console.log(db.Wish)
+
+    db.Wish.findAll({}).then(function (wishdata) {
+        res.render("wishlist", {
+            wish: wishdata
+        });
+    })
+  
+})
 
 module.exports = router;

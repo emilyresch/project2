@@ -7,25 +7,25 @@
                 <tr class="mdc-data-table__header-row">
                     <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Title</th>
                     <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Author</th>
-                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Update</th>
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Update Read Status</th>
                 </tr>
             </thead>
             <tbody class="mdc-data-table__content">
-                 <h2>Wishlist</h2>
+                 <h2>Book Wishlist</h2>
                 {{#each wish }}
-                {{#unless have_read}}
+                {{!-- {{#unless have_read}} --}}
                 <tr class="mdc-data-table__row">
                     <td class="mdc-data-table__cell">{{this.title}}</td>
                     <td class="mdc-data-table__cell">{{this.author}}</td>
-                    <button class="update-btn">Read it!</button>
+                    <td class="mdc-data-table__cell"><button class="update-btn">Read it!</button></td>
                 </tr>
-                {{/unless}}
+                {{!-- {{/unless}} --}}
                 {{/each}}
             </tbody>
         </table>
     </div>
 
-    <div class="mdc-data-table table2">
+    {{!-- <div class="mdc-data-table table2">
         <table class="mdc-data-table__table" aria-label="completed books">
             <thead>
                 <tr class="mdc-data-table__header-row">
@@ -37,15 +37,15 @@
             <tbody class="mdc-data-table__content">
                 <h2>Completed Books</h2>
                 {{#each complete }}
-                {{#if have_read }}
-                <tr class="mdc-data-table__row">
+                {{!-- {{#if have_read }} --}}
+                {{!-- <tr class="mdc-data-table__row">
                     <td class="mdc-data-table__cell">{{this.title}}</td>
                     <td class="mdc-data-table__cell">{{this.author}}</td>
-                    <button class="update-btn">Haven't Read!</button>
+                    <td class="mdc-data-table__cell"><button class="update-btn">Haven't Read!</button></td>
                 </tr>
-                {{/if}}
-                {{/each}}
+                {{!-- {{/if}} --}}
+                {{!-- {{/each}}
             </tbody>
         </table>
-    </div>
+    </div> --}}
 </div>
