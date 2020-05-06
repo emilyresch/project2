@@ -1,4 +1,39 @@
 body {
     background-color: #E0E0E0;
+    width: 85%;
+    margin:auto; 
+    /* magin auto is necessary for keeping data tables in center */
 }
 
+/* data tables style!*/
+/* do not edit! */
+.header-div {
+    position: relative;
+}
+
+.tables-title {
+    margin-top: 5em;
+}
+
+.container-tables {
+    display: grid;
+    justify-content: center;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto;
+}
+
+.mdc-data-table {
+    /* margin-top: 5em; */
+    padding: 0px 10px;
+    
+}
+
+.table1 {
+     grid-column-start: 1;
+   
+}
+
+.table2 {
+    grid-column-start: 4;
+  
+}
