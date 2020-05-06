@@ -1,6 +1,7 @@
 var router = require("express").Router();
 var db = require("../models");
 const axios = require('axios');
+var passport = require("../config/passport");
 
 // homepage (login/signup)
 router.get("/", function (req, res) {
@@ -21,8 +22,8 @@ router.post("/api/signup", function (req, res) {
 })
 
 //post request for login of old user
-router.post("/api/login", function (req, res) {
-
+router.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.json(req.user);
 })
 
 
