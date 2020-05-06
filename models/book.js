@@ -3,10 +3,6 @@ module.exports = function (sequelize, DataTypes) {
     var Wish = sequelize.define("Wish", {
         author: DataTypes.STRING,
         title: DataTypes.STRING,
-        favorite: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        },
         have_read: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

@@ -83,27 +83,16 @@ router.post("/api/book", function (req, res) {
     )
 })
 
-
-//update request when user favorites/unfavorites a book
-router.put("/api/book/:id", function (req, res) {
-    db.Wish.update({
-        favorite: req.body.favorite
-    }, {
-        where: {
-            id: req.params.id
+//request for adding a book to have_read table
+router.post("/api/completed", function (req, res) {
+    db.Completed.create(["title", "author"],
+        [req.body.author, req.body.title],
+        function (data) {
+            res.json({
+                id: data.insertID
+            });
         }
-    }).then(function (data) {
-        res.json(data)
-    });
-    db.Complete.update({
-        favorite: req.body.favorite
-    }, {
-        where: {
-            id: req.params.id
-        }
-    }).then(function (data) {
-        res.json(data)
-    });
+    )
 })
 
 //update request for moving wishlist book to completed books
@@ -119,7 +108,7 @@ router.put("/api/book/:id", function (req, res) {
     })
 })
 
-//get request for viewing wishlist, current list, and completed list
+//get request for viewing wishlist and completed list
 router.get("/api/profile", function (req, res) {
     db.Wish.findAll({}).then(function (data) {
         res.json(data);
@@ -128,5 +117,6 @@ router.get("/api/profile", function (req, res) {
         res.json(data);
     })
 })
+
 
 module.exports = router;
