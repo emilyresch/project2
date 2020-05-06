@@ -9,13 +9,13 @@
             <p>{{this.volumeInfo.description}}</p>
             <a href="{{this.saleInfo.buyLink}}">Buy Book</a>
             <div class="mdc-card__action-icons">
-                {{> add/add-btn}}
-            {{!-- <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" 
+                {{!-- {{> add/add-btn}} --}}
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" data-id="{{this.index}}"
                 aria-label="Mark as Read">bookmark_border</button>
-            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon"
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" data-id="{{this.index}}"
                 aria-label="Wishlist">star_border</button>
-            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon"
-                aria-label="Favorite">favorite_border</button> --}}
+            <button class="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" data-id="{{this.index}}"
+                aria-label="Favorite">favorite_border</button>
         </div>
         </div>
     </div>

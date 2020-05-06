@@ -4,23 +4,39 @@
     var addComplete = $('.read-btn');
 
     //search button onclick event
-    searchBooks.on("click",function(event){
+    searchButton.on("click",function(event){
         event.preventDefault();
-        var bookName = $("#bookSearch").val();
-        if(!bookName){
-            return;
-        }
+        console.log("heiii");
+        var bookName = searchBook.val().trim();
+        
+
+        // if(!bookName){
+        //     return;
+        // }
+
         searchforBook(bookName);
-        bookName.val("");
+        
+        // bookName.val("");
     })
     function searchforBook(bookName){
+      console.log(bookName);
         $.post("/api/booksearch/bookname",{
             title: bookName
         })
         .then(function(){
             console.log("Searching for book");
-            location.reload();
-        })
+            // location.reload();
+            getBook(bookName)
+        })   
+    }
+
+    function getBook(bookName){
+      $.get("/api/booksearch/bookname",{
+        title: bookName
+      })
+      .then(function(){
+        console.log("book book");
+      })
     }
 
     //click star to add to wishlist (Database)

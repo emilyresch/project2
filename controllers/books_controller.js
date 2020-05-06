@@ -42,29 +42,92 @@ router.get("/api/booksearch", function (req, res) {
     res.render("search")
 })
 
-//post request when user inputs search credentials
+// post request when user inputs search credentials
+router.get("/api/booksearch/bookname", function (req, res) {
+    var bookName = req.body.title;
+    console.log("success");
+    
+    var nameArray = bookName.split(" ");
+    var newBookName = nameArray.join("+");
+    newBook(newBookName, function(bookData){
+        res.render("search", {
+        books: bookData
+    });
+    });
+    // var bookData = newBook(newBookName)
+    // console.log(bookData);
+    
+    // res.render("search", {
+    //     books: bookData
+    // });
+    
+})
+
 router.post("/api/booksearch/bookname", function (req, res) {
     var bookName = req.body.title;
     var nameArray = bookName.split(" ");
     var newBookName = nameArray.join("+");
-    var book = newBook(newBookName);
-    res.render("search", {
-        books: book
+    // var book = newBook(newBookName);
+    // res.json(book)
+    newBook(newBookName, function(bookData){
+        res.render("search", {
+        books: bookData
+    });
     });
 })
+
+function newBook(newBookName, cb) {
+    console.log("addffsf");
+    
+    var bookArray = [];
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
+    axios.get(queryURL)
+        .then(function (response) {
+            console.log(response.data);
+            var apiData = response.data;
+            for (var i = 0; i < 6; i++) {
+                bookArray.push(apiData.items[i])
+            }
+            console.log(bookArray);
+            cb(bookArray) 
+        })
+    
+}
 
 function newBook(newBookName) {
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
     axios.get(queryURL)
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
+            var apiData = response.data;
             for (var i = 0; i < 6; i++) {
                 bookArray.push(apiData.items[i])
             }
+            // console.log(bookArray);
+            return bookArray
         })
-    return bookArray
+    
 }
+
+// router.get("/api/booksearch/bookname", function (req, res) {
+//   var bookName = req.body.title;
+//   var bookArray = [];
+//   var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + bookName;
+//     axios.get(queryURL)
+//         .then(function (response) {
+//             console.log(response.data);
+//             var apiData = response.data;
+//             for (var i = 0; i < 6; i++) {
+//                 bookArray.push(apiData.items[i])
+//             }
+//         })
+//         res.render("search", {
+//                     books: bookArray
+//                 });
+//     })
+
+
 
 //get request for search results from Books API
 // router.get("/api/results", function (req, res) {
@@ -74,7 +137,7 @@ function newBook(newBookName) {
 //request for adding a book to wishlist table
 router.post("/api/book", function (req, res) {
     db.Wish.create(["title", "author"],
-        [req.body.author, req.body.title],
+        [req.body.title, req.body.author],
         function (data) {
             res.json({
                 id: data.insertID
