@@ -64,8 +64,8 @@ function newBook(newBookName) {
 
 //request for adding a book to wishlist table
 router.post("/api/book", function (req, res) {
-    db.Wish.create(["author", "title", "favorite", "have_read"],
-        [req.body.author, req.body.title, req.body.favorite, req.body.have_read],
+    db.Wish.create(["title", "author"],
+        [req.body.author, req.body.title],
         function (data) {
             res.json({
                 id: data.insertID
@@ -111,7 +111,7 @@ router.put("/api/book/:id", function (req, res) {
 })
 
 //get request for viewing wishlist, current list, and completed list
-router.get("/api/booklists", function (req, res) {
+router.get("/api/profile", function (req, res) {
     db.Wish.findAll({}).then(function (data) {
         res.json(data);
     })
