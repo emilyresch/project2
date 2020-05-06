@@ -2,6 +2,7 @@ var router = require("express").Router();
 var db = require("../models");
 const axios = require('axios');
 var passport = require("../config/passport");
+var Sequelize = require("sequelize");
 
 // homepage (login/signup)
 router.get("/", function (req, res) {
@@ -9,7 +10,7 @@ router.get("/", function (req, res) {
     res.render("index");
 })
 
-router.get("/api/login", function(req,res) {
+router.get("/api/login", function (req, res) {
     if (req.user) {
         res.redirect("/api/booksearch");
     }
@@ -24,7 +25,7 @@ router.post("/api/signup", function (req, res) {
     }).then(function (data) {
         res.json(data);
         res.redirect(307, "/api/login");
-    }).catch(function(err) {
+    }).catch(function (err) {
         res.status(401).json(err);
     })
 
@@ -58,14 +59,18 @@ router.post("/api/booksearch/title", function (req, res) {
     var title = req.body.title;
     var nameArray = title.split(" ");
     var newBookName = nameArray.join("+");
-    newBook(newBookName, function(bookData){
-        res.json(bookData)
+    // var book = newBook(newBookName);
+    // res.json(book)
+    newBook(newBookName, function (bookData) {
+        res.render("search", {
+            books: bookData
+        });
     });
 })
 
 function newBook(newBookName, cb) {
     console.log("addffsf");
-    
+
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
     axios.get(queryURL)
@@ -74,8 +79,28 @@ function newBook(newBookName, cb) {
             for (var i = 0; i < 6; i++) {
                 bookArray.push(apiData.items[i])
             }
+            console.log(bookArray);
+            cb(bookArray)
+        })
+
+}
+
+function newBook(newBookName) {
+    var bookArray = [];
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
+    axios.get(queryURL)
+        .then(function (response) {
+            // console.log(response.data);
+            var apiData = response.data;
+            for (var i = 0; i < 6; i++) {
+                bookArray.push(apiData.items[i])
+            }
+            // console.log(bookArray);
+            return bookArray
+        })
+
             cb(bookArray) 
-    })
+   
     
 }
 
@@ -121,15 +146,27 @@ router.put("/api/book/:id", function (req, res) {
     })
 })
 
-//get request for viewing wishlist and completed list
+//get request for viewing completed list
 router.get("/api/profile", function (req, res) {
-    db.Wish.findAll({}).then(function (data) {
-        res.json(data);
+    console.log(db.Completed)
+    
+    db.Completed.findAll({}).then(function (compdata) {
+        res.render("profile", {
+            complete: compdata
+        });
     })
-    db.Complete.findAll({}).then(function (data) {
-        res.json(data);
-    })
+
 })
 
+router.get("/api/wishlist", function (req, res) {
+    console.log(db.Wish)
+
+    db.Wish.findAll({}).then(function (wishdata) {
+        res.render("wishlist", {
+            wish: wishdata
+        });
+    })
+  
+})
 
 module.exports = router;

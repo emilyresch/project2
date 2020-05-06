@@ -1,11 +1,11 @@
 
-    var searchButton = $(".searchButton");
+    var searchBooks = $("#searchbutton");
     var addWishlist = $('.wishlist-btn');
     var addComplete = $('.read-btn');
     var searchBook = $(".booksearch");
 
     //search button onclick event
-    searchButton.on("click",function(event){
+    searchBooks.on("click",function(event){
         event.preventDefault();
         console.log("heiii");
         var title = searchBook.val().trim();
