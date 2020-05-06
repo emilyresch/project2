@@ -1,7 +1,7 @@
 
-    var searchButton = $("#searchbutton");
-    var addWishlist = $('#wishlist-btn');
-    var searchBook = $(".booksearch");
+    var searchBooks = $("#searchButton");
+    var addWishlist = $('.wishlist-btn');
+    var addComplete = $('.read-btn');
 
     //search button onclick event
     searchButton.on("click",function(event){
@@ -55,6 +55,28 @@
     }).then(
       function() {
         console.log("created new Wishlist Book");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+    })
+
+      //click tag to add to hav_read (Database)
+    addComplete.on("click", function(event){
+        event.preventDefault();
+
+    var newBook = {
+      author: $(this).volumeInfo.authors,
+      title: $(this).volumeInfo.title
+    };
+
+    // Send the POST request.
+    $.ajax("/api/completed", {
+      type: "POST",
+      data: newBook
+    }).then(
+      function() {
+        console.log("created new Completed Book");
         // Reload the page to get the updated list
         location.reload();
       }
