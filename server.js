@@ -24,8 +24,8 @@ var routes = require("./controllers/books_controller.js");
 app.use(routes);
 
 
-db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
-      console.log("App listening on PORT " + PORT);
-    });
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
   });
+});
