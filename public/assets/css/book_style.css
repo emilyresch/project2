@@ -1,6 +1,5 @@
 body {
     background-color: #E0E0E0;
-    width: 85%;
     margin:auto; 
     /* magin auto is necessary for keeping data tables in center */
 }
@@ -9,6 +8,10 @@ body {
 /* do not edit! */
 .header-div {
     position: relative;
+}
+
+.mdc-top-app-bar {
+    width: 100%;
 }
 
 .tables-title {
