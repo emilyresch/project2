@@ -9,6 +9,12 @@ router.get("/", function (req, res) {
     res.render("index");
 })
 
+router.get("/api/login", function(req,res) {
+    if (req.user) {
+        res.redirect("/api/booksearch");
+    }
+    res.render("search");
+})
 
 //post request for new user signup
 router.post("/api/signup", function (req, res) {
@@ -17,6 +23,9 @@ router.post("/api/signup", function (req, res) {
         password: req.body.password
     }).then(function (data) {
         res.json(data);
+        res.redirect(307, "/api/login");
+    }).catch(function(err) {
+        res.status(401).json(err);
     })
 
 })
