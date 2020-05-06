@@ -43,24 +43,26 @@ router.get("/api/booksearch", function (req, res) {
 })
 
 //post request when user inputs search credentials
-router.post("/api/booksearch/bookname", function(req, res){
+router.post("/api/booksearch/bookname", function (req, res) {
     var bookName = req.body.title;
     var nameArray = bookName.split(" ");
     var newBookName = nameArray.join("+");
-    var book = newBook(newBookName);  
-    res.render("search",{books: book});
+    var book = newBook(newBookName);
+    res.render("search", {
+        books: book
+    });
 })
 
-function newBook(newBookName){
+function newBook(newBookName) {
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
     axios.get(queryURL)
-    .then(function(response){
-        console.log(response.data);
-        for(var i=0; i<6; i++){
-            bookArray.push(apiData.items[i])
-        }
-    })
+        .then(function (response) {
+            console.log(response.data);
+            for (var i = 0; i < 6; i++) {
+                bookArray.push(apiData.items[i])
+            }
+        })
     return bookArray
 }
 
@@ -69,18 +71,22 @@ function newBook(newBookName){
 //     res.render("")
 // })
 
+//request for adding a book to wishlist table
+router.post("/api/book", function (req, res) {
+    db.Wish.create(["title", "author"],
+        [req.body.author, req.body.title],
+        function (data) {
+            res.json({
+                id: data.insertID
+            });
+        }
+    )
+})
+
+
 //update request when user favorites/unfavorites a book
 router.put("/api/book/:id", function (req, res) {
     db.Wish.update({
-        favorite: req.body.favorite
-    }, {
-        where: {
-            id: req.params.id
-        }
-    }).then(function (data) {
-        res.json(data)
-    });
-    db.Current.update({
         favorite: req.body.favorite
     }, {
         where: {
@@ -114,7 +120,7 @@ router.put("/api/book/:id", function (req, res) {
 })
 
 //get request for viewing wishlist, current list, and completed list
-router.get("/api/booklists", function (req, res) {
+router.get("/api/profile", function (req, res) {
     db.Wish.findAll({}).then(function (data) {
         res.json(data);
     })
