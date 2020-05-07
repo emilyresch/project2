@@ -159,7 +159,7 @@ router.get("/profile", function (req, res) {
 
     } else {
         // unauthorized request
-        res.redirect( 401, '/')
+        res.redirect('/');
     }
 
 })
@@ -175,7 +175,7 @@ router.get("/wishlist", function (req, res) {
 
     }else {
         // unauthorized request
-        res.redirect( 401, '/')
+        res.redirect('/');
     }
 
 })
