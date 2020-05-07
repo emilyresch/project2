@@ -37,6 +37,8 @@
           var author = bookdata[i].volumeInfo.authors;
           var description = bookdata[i].volumeInfo.description;
           var buyLink = bookdata[i].saleInfo.buyLink;
+        //   console.log(buyLink);
+          
 
             var divElement = document.createElement("div");
             divElement.setAttribute("class","mdc-card--outlined newCard");
@@ -64,26 +66,38 @@
             actionsDiv.setAttribute("class","mdc-card__action-icons");
             divElement.appendChild(actionsDiv);
 
-            var buyElement = document.createElement("a");
-            buyElement.setAttribute("href",buyLink);
-            buyElement.setAttribute("target","_blank");
-            buyElement.setAttribute("class","attributes");
-            buyElement.textContent = "Buy Book";
-            actionsDiv.appendChild(buyElement);
+            if(buyLink == undefined || buyLink == ""){
+                var buyElement = document.createElement("p");
+                buyElement.setAttribute("class","attributes");
+                buyElement.textContent = "Not available";
+                actionsDiv.appendChild(buyElement);
+            }
+            else{
+                var buyElement = document.createElement("a");
+                buyElement.setAttribute("href",buyLink);
+                buyElement.setAttribute("target","_blank");
+                buyElement.setAttribute("class","attributes");
+                buyElement.textContent = "Buy Book";
+                actionsDiv.appendChild(buyElement);
+            }
 
             var bookmarkButton = document.createElement("button");
-            bookmarkButton.setAttribute("class","material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
+            bookmarkButton.setAttribute("class","read-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
             bookmarkButton.setAttribute("data-id",i);
+            bookmarkButton.setAttribute("data-author", bookdata[i].volumeInfo.authors);
+            bookmarkButton.setAttribute("data-title", bookdata[i].volumeInfo.title);
             bookmarkButton.setAttribute("aria-label","Mark as Read");
             bookmarkButton.textContent = "bookmark_border";
             actionsDiv.appendChild(bookmarkButton);
 
-            var bookmarkButton = document.createElement("button");
-            bookmarkButton.setAttribute("class","material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
-            bookmarkButton.setAttribute("data-id",i);
-            bookmarkButton.setAttribute("aria-label","Wishlist");
-            bookmarkButton.textContent = "star_border";
-            actionsDiv.appendChild(bookmarkButton);
+            var wishButton = document.createElement("button");
+            wishButton.setAttribute("class","wishlist-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
+            wishButton.setAttribute("data-id",i);
+            wishButton.setAttribute("data-author", bookdata[i].volumeInfo.authors)
+            wishButton.setAttribute("data-title", bookdata[i].volumeInfo.title)
+            wishButton.setAttribute("aria-label","Wishlist");
+            wishButton.textContent = "star_border";
+            actionsDiv.appendChild(wishButton);
             
 
         }
@@ -91,34 +105,36 @@
     }
 
 //click star to add to wishlist (Database)
-addWishlist.on("click", function (event) {
+$(document).on("click", ".wishlist-btn", function (event) {
     event.preventDefault();
+    console.log("wish");
+    
 
     var newBook = {
-        author: $(this).volumeInfo.author,
-        title: $(this).volumeInfo.title
+        author: $(this).data("author"),
+        title: $(this).data("title")
     };
+    console.log(newBook)
 
     // Send the POST request.
     $.ajax("/api/book", {
         type: "POST",
         data: newBook
     }).then(
-        function () {
+        function (response) {
             console.log("created new Wishlist Book");
-            // Reload the page to get the updated list
-            location.reload();
         }
     );
 })
 
 //click tag to add to hav_read (Database)
-addComplete.on("click", function (event) {
+$(document).on("click",".read-btn", function (event) {
     event.preventDefault();
 
     var newBook = {
-        author: $(this).dataValues.author,
-        title: $(this).dataValues.title
+        author: $(this).data("author"),
+        title: $(this).data("title"),
+        have_read: true
     };
 
     // Send the POST request.
@@ -128,8 +144,6 @@ addComplete.on("click", function (event) {
     }).then(
         function () {
             console.log("created new Completed Book");
-            // Reload the page to get the updated list
-            location.reload();
         }
     );
 })
