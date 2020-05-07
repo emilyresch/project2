@@ -11,7 +11,7 @@ profileBtn.on("click", function (e) {
       console.log("going to profile page");
       // Reload the page to get the updated list
       // location.reload();
-      window.location.replace("/api/profile");
+      window.location.replace("/profile");
 
     })
 })
@@ -29,7 +29,7 @@ wishlistBtn.on("click", function (e) {
       console.log("going to wishlist page");
       // Reload the page to get the updated list
       // location.reload();
-      window.location.replace("/api/wishlist");
+      window.location.replace("/wishlist");
 
     })
 })
@@ -45,7 +45,7 @@ clickTitle.on("click", function(e) {
   }).then(
     function() {
       console.log("Going back to search!");
-      window.location.replace("/api/booksearch");
+      window.location.replace("/booksearch");
     }
   )
 });
@@ -56,12 +56,13 @@ signoutBtn.on("click", function(e) {
   e.preventDefault();
   console.log("Logging out!");
 
-  $.ajax("/", {
+  $.ajax("/logout", {
     type: "GET"
   }).then(
-    function() {
+    function(result) {
       console.log("Logged out!");
       window.location.replace("/");
+     
     }
   )
 });

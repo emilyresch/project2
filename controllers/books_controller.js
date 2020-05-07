@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
 
 router.get("/api/login", function (req, res) {
     if (req.user) {
-        res.redirect("/api/booksearch");
+        res.redirect("/booksearch");
     }
     res.render("search");
 })
@@ -35,14 +35,24 @@ router.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
 })
 
+// Route for logging user out
+router.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
 
 //get request for search page when user signs up/logs in
-router.get("/api/booksearch", function (req, res) {
-    res.render("search")
+router.get("/booksearch", function (req, res) {
+    if (req.user) {
+        res.render("search")
+    } else {
+        res.redirect('/')
+    }
 })
 
 // post request when user inputs search credentials
-router.get("/api/booksearch/:title", function (req, res) {
+router.get("/api/search/:title", function (req, res) {
     var title = req.params.title;
     var nameArray = title.split(" ");
     var newBookName = nameArray.join("+");
@@ -98,7 +108,7 @@ router.post("/api/book", function (req, res) {
         }
         )
     } else {
-        res.status(404).end("Unauthorized Request");
+        res.status(401).end("Unauthorized Request");
     }
 })
 
@@ -118,7 +128,7 @@ router.post("/api/completed", function (req, res) {
         }
         )
     } else {
-        res.status(404).end("Unauthorized Request");
+        res.status(401).end("Unauthorized Request");
     }
 })
 
@@ -138,25 +148,35 @@ router.post("/api/book/:id", function (req, res) {
 })
 
 //get request for viewing completed list
-router.get("/api/profile", function (req, res) {
+router.get("/profile", function (req, res) {
     console.log(db.Completed)
+    if (req.user) {
+        db.Book.findAll({where: {UserId: req.user.id}}).then(function (compdata) {
+            res.render("profile", {
+                Book: compdata
+            });
+        })
 
-    db.Book.findAll({}).then(function (compdata) {
-        res.render("profile", {
-            Book: compdata
-        });
-    })
+    } else {
+        // unauthorized request
+        res.redirect( 401, '/')
+    }
 
 })
 
-router.get("/api/wishlist", function (req, res) {
+router.get("/wishlist", function (req, res) {
     console.log(db.Book)
+    if (req.user) {
+        db.Book.findAll({where: {UserId: req.user.id}}).then(function (Bookdata) {
+            res.render("wishlist", {
+                Book: Bookdata
+            });
+        })
 
-    db.Book.findAll({}).then(function (Bookdata) {
-        res.render("wishlist", {
-            Book: Bookdata
-        });
-    })
+    }else {
+        // unauthorized request
+        res.redirect( 401, '/')
+    }
 
 })
 

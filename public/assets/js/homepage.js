@@ -26,7 +26,7 @@ function signUpUser(username, password) {
       password: password
     })
       .then(function(data) {
-        window.location.replace("/api/booksearch");
+        window.location.replace("/booksearch");
       })
       .catch(handleLoginErr);
 }
@@ -59,7 +59,7 @@ function loginUser(username, password) {
       password: password
     })
       .then(function() {
-        window.location.replace("/api/booksearch");
+        window.location.replace("/booksearch");
       })
       .catch(function(err) {
         $("#signin-error-message").fadeIn().delay(3000).fadeOut();
