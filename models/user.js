@@ -20,12 +20,12 @@ module.exports = function (sequelize, DataTypes) {
     });
     User.associate = function (models) {
         // Associating Users with New and Old books
-        User.hasMany(models.Wish, {
+        User.hasMany(models.Book, {
             onDelete: "cascade"
         });
-        User.hasMany(models.Completed, {
-            onDelete: "cascade"
-        });
+        // User.hasMany(models.Completed, {
+        //     onDelete: "cascade"
+        // });
     };
 
     User.prototype.validPassword = function (password) {

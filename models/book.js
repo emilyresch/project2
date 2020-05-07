@@ -1,6 +1,6 @@
 //WISHLIST
 module.exports = function (sequelize, DataTypes) {
-    var Wish = sequelize.define("Wish", {
+    var Book = sequelize.define("Book", {
         author: DataTypes.STRING,
         title: DataTypes.STRING,
         have_read: {
@@ -10,13 +10,13 @@ module.exports = function (sequelize, DataTypes) {
     });
 
 
-    Wish.associate = function (models) {
+    Book.associate = function (models) {
         //New book should belong to a USER
-        Wish.belongsTo(models.User, {
+        Book.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return Wish;
+    return Book;
 }
