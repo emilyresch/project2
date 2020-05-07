@@ -107,8 +107,8 @@
 //click star to add to wishlist (Database)
 $(document).on("click", ".wishlist-btn", function (event) {
     event.preventDefault();
-    console.log("wish");
-    
+    // console.log("wish");
+    $(this).text("star");
 
     var newBook = {
         author: $(this).data("author"),
@@ -130,7 +130,7 @@ $(document).on("click", ".wishlist-btn", function (event) {
 //click tag to add to hav_read (Database)
 $(document).on("click",".read-btn", function (event) {
     event.preventDefault();
-
+    $(this).text("bookmark");
     var newBook = {
         author: $(this).data("author"),
         title: $(this).data("title"),
