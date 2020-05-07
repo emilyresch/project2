@@ -7,6 +7,15 @@ body {
     /* magin auto is necessary for keeping data tables in center */
 }
 
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode-card {
+    background-color: #222222;
+}
+
 /* data tables style!*/
 /* do not edit! */
 .header-div {
@@ -19,10 +28,6 @@ body {
     color: red;
 }
 
-.mdc-top-app-bar {
-    width: 100%;
-}
-
 /* .tables-title {
     margin-top: 5em;
 } */
@@ -32,6 +37,10 @@ body {
     justify-content: center;
     grid-column-gap: 50px;
     grid-template-columns: auto auto;
+}
+
+.mdc-text-field {
+    background-color: white;
 }
 
 .mdc-data-table {
@@ -59,12 +68,11 @@ body {
 }
 
 .newCard{
-    background-color: white;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-bottom: 10px;
-    border-style: solid;
-    border-color: rgb(37, 7, 46);
+    /* border-style: solid;
+    border-color: rgb(37, 7, 46); */
 }
 
 .attributes{
