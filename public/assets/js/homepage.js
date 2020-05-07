@@ -2,6 +2,8 @@ var userInput = $("#user-input");
 var passwordInput = $("#password-input");
 console.log("hello");
 
+$("#signin-error-message").hide();
+
 $("#signUpButton").on("click", function(event){
 event.preventDefault();
  var userData = {
@@ -11,7 +13,7 @@ event.preventDefault();
     console.log("helloSignup");
     console.log(userData);   
     if(!userData.username || !userData.password){
-        // alert("")
+      $("#signin-error-message").fadeIn().delay(3000).fadeOut();
         return;
     }
     signUpUser(userData.username, userData.password);
@@ -31,6 +33,7 @@ function signUpUser(username, password) {
 function handleLoginErr(err) {
     $("#alert .msg").text(err.responseJSON);
     $("#alert").fadeIn(500);
+    $("#signin-error-message").fadeIn().delay(3000).fadeOut();
 }
 
 $("#loginButton").on("click", function(event){
@@ -42,8 +45,8 @@ $("#loginButton").on("click", function(event){
     };
     console.log(userData);   
     if(!userData.username || !userData.password){
-        // alert("")
-        return;
+      $("#signin-error-message").fadeIn().delay(3000).fadeOut();
+      return;
     }
     loginUser(userData.username, userData.password);
     userInput.val("");
@@ -59,6 +62,7 @@ function loginUser(username, password) {
         window.location.replace("/api/booksearch");
       })
       .catch(function(err) {
+        $("#signin-error-message").fadeIn().delay(3000).fadeOut();
         console.log(err);
       });
 }
