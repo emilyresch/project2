@@ -41,7 +41,7 @@
           
 
             var divElement = document.createElement("div");
-            divElement.setAttribute("class","mdc-card--outlined newCard");
+            divElement.setAttribute("class","mdc-card newCard");
             document.body.appendChild(divElement);
 
             var titleElement = document.createElement("h4");

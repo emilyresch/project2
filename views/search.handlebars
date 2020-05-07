@@ -3,21 +3,10 @@
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             {{!-- <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
                     aria-label="Open navigation menu">menu</button> --}}
-            <span class="mdc-top-app-bar__title">Bookshelf</span>
+            <span class="mdc-top-app-bar__title title-click">Bookshelf</span>
         </section>
 
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <div class="mdc-switch mdc-switch--disabled">
-                <div class="mdc-switch__track"></div>
-                <div class="mdc-switch__thumb-underlay">
-                    <div class="mdc-switch__thumb"></div>
-                    <input type="checkbox" id="another-basic-switch" class="mdc-switch__native-control" role="switch"
-                        aria-checked="false" disabled>
-                </div>
-            </div>
-
-            <label for="another-basic-switch">Dark Mode</label>
-
             <div class="mdc-text-field mdc-text-field--outlined" id="inputText">
                 <input class="mdc-text-field__input booksearch" id="text-field-hero-input">
                 <div class="mdc-notched-outline">
@@ -32,11 +21,17 @@
             <button class="searchbutton material-icons mdc-top-app-bar__action-item mdc-icon-button"
                 aria-label="Search">search</button>
 
+            <button class="theme-nav material-icons mdc-top-app-bar__action-item mdc-icon-button"
+                aria-label="Theme">brightness_2</button>
+
             <button class="wishlist-nav material-icons mdc-top-app-bar__action-item mdc-icon-button"
                 aria-label="Wishlist">star</button>
 
             <button class="profile-nav material-icons mdc-top-app-bar__action-item mdc-icon-button"
                 aria-label="Account Circle">account_circle</button>
+
+            <button class="signout-nav material-icons mdc-top-app-bar__action-item mdc-icon-button"
+                aria-label="Signout">home</button>
 
         </section>
     </div>
@@ -44,6 +39,6 @@
 <div class="mdc-layout-grid">
 
     <h3>Filler</h3>
-    <h2>Search Results</h2>
+    <h2 style="text-align: center">Search Results</h2>
 
 </div>
