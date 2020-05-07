@@ -1,6 +1,9 @@
 body {
     background-color: #E0E0E0;
-    margin:auto; 
+    /* background-color: #121212; */
+    margin: auto; 
+    font-family: 'Roboto', sans-serif;
+    color: black;
     /* magin auto is necessary for keeping data tables in center */
 }
 
@@ -8,6 +11,12 @@ body {
 /* do not edit! */
 .header-div {
     position: relative;
+}
+
+#signin-error-message {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: red;
 }
 
 .mdc-top-app-bar {
