@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "savebooks_db",
-    "host": "127.0.0.1",
+    "username": "t9sqdyd5yfdm8mc8",
+    "password": "o8o20ewk2foox1u1",
+    "database": "vdnemcmy41vhfciu",
+    "host": "lgg2gx1ha7yp2w0k.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql",
     "operatorsAliases": false
   },
