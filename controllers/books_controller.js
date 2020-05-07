@@ -49,28 +49,23 @@ router.get("/api/booksearch/:title", function (req, res) {
     var newBookName = nameArray.join("+");
     newBook(newBookName, function (bookData) {
         console.log(bookData);
-        res.render("search", {
-            books: bookData
-        });
-    });
+        res.json(bookData)
+    }); 
+    
 })
 
 router.post("/api/booksearch/title", function (req, res) {
     var title = req.body.title;
     var nameArray = title.split(" ");
     var newBookName = nameArray.join("+");
-    // var book = newBook(newBookName);
-    // res.json(book)
-    newBook(newBookName, function (bookData) {
-        res.render("search", {
-            books: bookData
-        });
+    newBook(newBookName, function(bookData){
+        res.json(bookData)
     });
 })
 
 function newBook(newBookName, cb) {
     console.log("addffsf");
-
+    
     var bookArray = [];
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
     axios.get(queryURL)
@@ -79,29 +74,9 @@ function newBook(newBookName, cb) {
             for (var i = 0; i < 6; i++) {
                 bookArray.push(apiData.items[i])
             }
-            console.log(bookArray);
-            cb(bookArray)
-        })
-
-}
-
-function newBook(newBookName) {
-    var bookArray = [];
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + newBookName;
-    axios.get(queryURL)
-        .then(function (response) {
-            // console.log(response.data);
-            var apiData = response.data;
-            for (var i = 0; i < 6; i++) {
-                bookArray.push(apiData.items[i])
-            }
-            // console.log(bookArray);
-            return bookArray
-        })
-
-    cb(bookArray)
-
-
+            cb(bookArray) 
+    })
+    
 }
 
 //get request for search results from Books API
