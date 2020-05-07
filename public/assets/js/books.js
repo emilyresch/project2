@@ -184,7 +184,7 @@ readBtn.on("click", function (e) {
         function () {
             console.log("updated to read");
             // Reload the page to get the updated list
-            // location.reload();
+            location.reload();
         }
     );
 })

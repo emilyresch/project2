@@ -114,7 +114,7 @@ router.post("/api/book/:id", function (req, res) {
     db.Book.update({
         have_read: req.body.have_read
     }, {
-        where: req.params.id
+        where: {id: req.params.id}
         
     }).then(function(data){
         res.json(data);
