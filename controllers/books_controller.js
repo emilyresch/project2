@@ -143,6 +143,8 @@ router.put("/api/book/:id", function (req, res) {
         }
     }).then(function (data) {
         res.json(data);
+    }).catch(function(err){
+        res.json(err);
     })
 })
 

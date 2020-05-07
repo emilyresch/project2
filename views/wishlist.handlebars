@@ -10,17 +10,16 @@
         </thead>
         <tbody class="mdc-data-table__content">
             <h3>Filler</h3>
-            <h2 class="tables-title" style="text-align:center">{{this.username}}'s Wishlist</h2>
-            {{!-- <h2>Book Wishlist</h2> --}}
+            <h2 class="tables-title" style="text-align:center">Wishlist</h2>
             {{#each wish }}
-            {{!-- {{#unless have_read}} --}}
+           {{#unless dataValues.have_read}} 
             <tr class="mdc-data-table__row">
                 <td class="mdc-data-table__cell">{{dataValues.title}}</td>
                 <td class="mdc-data-table__cell">{{dataValues.author}}</td>
-
-                <td class="mdc-data-table__cell"><button class="update-btn">Read it!</button></td>
+                <td class="mdc-data-table__cell"><button type="button" class="update-read-btn" 
+                data-id="{{dataValues.id}}" data-readstatus="{{read}}">Read it!</button></td>   
             </tr>
-            {{!-- {{/unless}} --}}
+           {{/unless}} 
             {{/each}}
         </tbody>
     </table>

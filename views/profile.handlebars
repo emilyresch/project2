@@ -11,14 +11,14 @@
             <h3>filler</h3>
             <h2 style="text-align:center">Completed Books</h2>
             {{#each complete }}
-            {{!-- {{#if have_read }}  --}}
+            {{#if dataValues.have_read }}  
             <tr class="mdc-data-table__row">
                 <td class="mdc-data-table__cell">{{dataValues.title}}</td>
                 <td class="mdc-data-table__cell">{{dataValues.author}}</td>
-
-                <td class="mdc-data-table__cell"><button class="update-btn">Haven't Read Yet!</button></td>
+                <td class="mdc-data-table__cell"><button type="button" class="update-unread-btn" 
+                data-id="{{dataValues.id}}" data-readstatus="{{unread}}">Haven't Read Yet!</button></td>   
             </tr>
-            {{!-- {{/if}}  --}}
+            {{/if}}
             {{/each }}
         </tbody>
     </table>
