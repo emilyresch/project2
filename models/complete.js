@@ -1,4 +1,4 @@
-//COMPLETED BOOKS
+// COMPLETED BOOKS
 module.exports = function (sequelize, DataTypes) {
     var Completed = sequelize.define("Completed", {
         author: DataTypes.STRING,

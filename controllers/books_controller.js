@@ -2,8 +2,8 @@ var router = require("express").Router();
 var db = require("../models");
 const axios = require('axios');
 var passport = require("../config/passport");
-var Sequelize = require("sequelize");
-
+// var Sequelize = require("sequelize");
+console.log(db.Book);
 // homepage (login/signup)
 router.get("/", function (req, res) {
     //render homepage
@@ -47,15 +47,15 @@ router.get("/api/booksearch/:title", function (req, res) {
     var title = req.params.title;
     var nameArray = title.split(" ");
     var newBookName = nameArray.join("+");
-    newBook(newBookName, function(bookData){
+    newBook(newBookName, function (bookData) {
         console.log(bookData);
         res.render("search", {
-        books: bookData
+            books: bookData
+        });
     });
-    }); 
 })
 
-router.post("/api/booksearch/title", function (req, res) {   
+router.post("/api/booksearch/title", function (req, res) {
     var title = req.body.title;
     var nameArray = title.split(" ");
     var newBookName = nameArray.join("+");
@@ -99,9 +99,9 @@ function newBook(newBookName) {
             return bookArray
         })
 
-            cb(bookArray) 
-   
-    
+    cb(bookArray)
+
+
 }
 
 //get request for search results from Books API
@@ -109,9 +109,9 @@ function newBook(newBookName) {
 //     res.render("")
 // })
 
-//request for adding a book to wishlist table
+//request for adding a book to Booklist table
 router.post("/api/book", function (req, res) {
-    db.Wish.create(["title", "author"],
+    db.Book.create(["title", "author"],
         [req.body.title, req.body.author],
         function (data) {
             res.json({
@@ -123,7 +123,7 @@ router.post("/api/book", function (req, res) {
 
 //request for adding a book to have_read table
 router.post("/api/completed", function (req, res) {
-    db.Completed.create(["title", "author"],
+    db.Book.create(["title", "author"],
         [req.body.author, req.body.title],
         function (data) {
             res.json({
@@ -133,42 +133,55 @@ router.post("/api/completed", function (req, res) {
     )
 })
 
-//update request for moving wishlist book to completed books
-router.put("/api/book/:id", function (req, res) {
-    db.Wish.update({
+//update request for moving Booklist book to completed books
+router.post("/api/book/:id", function (req, res) {
+    console.log(req.body.have_read, req.params.id);
+    db.Book.update({
         have_read: req.body.have_read
     }, {
-        where: {
-            id: req.body.id
-        }
-    }).then(function (data) {
+        where: req.params.id
+        
+    }).then(function(data){
         res.json(data);
-    }).catch(function(err){
-        res.json(err);
+        // location.reload();
     })
+
+    // db.Book.update({
+    //     have_read: req.body.have_read
+    // }, {
+    //     where: {
+    //         id: req.params.id
+    //     }
+    // }).then(function (data) {
+    //     // console.log(req.body.have_read);
+    //     console.log(data);
+    //     res.json(data);
+    // }).catch(function(err){
+    //     res.json(err);
+    // })
 })
 
 //get request for viewing completed list
 router.get("/api/profile", function (req, res) {
     console.log(db.Completed)
-    
-    db.Completed.findAll({}).then(function (compdata) {
+
+    db.Book.findAll({}).then(function (compdata) {
         res.render("profile", {
-            complete: compdata
+            Book: compdata
         });
     })
 
 })
 
 router.get("/api/wishlist", function (req, res) {
-    console.log(db.Wish)
+    console.log(db.Book)
 
-    db.Wish.findAll({}).then(function (wishdata) {
+    db.Book.findAll({}).then(function (Bookdata) {
         res.render("wishlist", {
-            wish: wishdata
+            Book: Bookdata
         });
     })
-  
+
 })
 
 module.exports = router;

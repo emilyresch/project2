@@ -40,7 +40,7 @@ addWishlist.on("click", function (event) {
     event.preventDefault();
 
     var newBook = {
-        author: $(this).volumeInfo.authors,
+        author: $(this).volumeInfo.author,
         title: $(this).volumeInfo.title
     };
 
@@ -74,7 +74,7 @@ addComplete.on("click", function (event) {
         function () {
             console.log("created new Completed Book");
             // Reload the page to get the updated list
-            // location.reload();
+            location.reload();
         }
     );
 })
@@ -87,13 +87,16 @@ unreadBtn.on("click", function (e) {
     e.preventDefault();
     var id = $(this).data("id");
     console.log(id);
+    console.log(this);
+
     var readState = {
         have_read: false
     }
-    // console.log(readState);
+
+    console.log(readState);
 
     $.ajax("/api/book/" + id, {
-        type: "PUT",
+        type: "POST",
         data: readState
     }).then(
         function () {
@@ -113,19 +116,20 @@ readBtn.on("click", function (e) {
     e.preventDefault();
     var id = $(this).data("id");
     console.log(id);
+    console.log(this);
     var readState = {
         have_read: true
     }
-    // console.log(readState);
+    console.log("new state is", readState);
 
     $.ajax("/api/book/" + id, {
-        type: "PUT",
+        type: "POST",
         data: readState
     }).then(
         function () {
             console.log("updated to read");
             // Reload the page to get the updated list
-            location.reload();
+            // location.reload();
         }
     );
 })
