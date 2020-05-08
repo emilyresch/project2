@@ -5,7 +5,7 @@ console.log("hello");
 var darkMode = false;
 
 $("#signin-message").hide();
-$("#login-section").css({opacity:0, visibility:"visible"}).animate({opacity:1});
+$("#login-section").css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 });
 
 $("#signUpButton").on("click", function (event) {
   event.preventDefault();
@@ -69,7 +69,7 @@ function loginUser(username, password) {
     password: password
   })
     .then(function () {
-      $("#login-section").css({opacity:1, visibility:"hidden"}).animate({opacity:0}, 200);
+      $("#login-section").css({ opacity: 1, visibility: "hidden" }).animate({ opacity: 0 }, 200);
       window.location.replace("/booksearch");
     })
     .catch(function (err) {

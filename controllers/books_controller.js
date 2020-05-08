@@ -36,10 +36,10 @@ router.post("/api/login", passport.authenticate("local"), function (req, res) {
 })
 
 // Route for logging user out
-router.get("/logout", function(req, res) {
+router.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
-  });
+});
 
 
 //get request for search page when user signs up/logs in
@@ -151,7 +151,7 @@ router.post("/api/book/:id", function (req, res) {
 router.get("/profile", function (req, res) {
     console.log(db.Completed)
     if (req.user) {
-        db.Book.findAll({where: {UserId: req.user.id}}).then(function (compdata) {
+        db.Book.findAll({ where: { UserId: req.user.id } }).then(function (compdata) {
             res.render("profile", {
                 Book: compdata
             });
@@ -167,13 +167,13 @@ router.get("/profile", function (req, res) {
 router.get("/wishlist", function (req, res) {
     console.log(db.Book)
     if (req.user) {
-        db.Book.findAll({where: {UserId: req.user.id}}).then(function (Bookdata) {
+        db.Book.findAll({ where: { UserId: req.user.id } }).then(function (Bookdata) {
             res.render("wishlist", {
                 Book: Bookdata
             });
         })
 
-    }else {
+    } else {
         // unauthorized request
         res.redirect('/');
     }

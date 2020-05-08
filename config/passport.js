@@ -8,13 +8,13 @@ passport.use(new LocalStrategy(
         usernameField: "username"
     },
 
-    function(username, password, done) {
+    function (username, password, done) {
         db.User.findOne({
             where: {
                 username: username
             }
-        }).then(function(dbUser) {
-            if(!dbUser) {
+        }).then(function (dbUser) {
+            if (!dbUser) {
                 return done(null, false, {
                     message: "Incorrect username!"
                 });
@@ -31,11 +31,11 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function (user, cb) {
     cb(null, user);
 });
 
-passport.deserializeUser(function(obj, cb) {
+passport.deserializeUser(function (obj, cb) {
     cb(null, obj);
 });
 
