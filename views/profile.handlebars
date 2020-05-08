@@ -23,7 +23,7 @@
     </div>
 </header>
 
-<div class="mdc-data-table" id="table2" style="width:50%; margin-left:25%; margin-right:25%">
+<div class="mdc-data-table" id="table2" style="width:75%; margin-left:11%; margin-right:10%">
     <table class="mdc-data-table__table" aria-label="completed books">
         <thead>
             <tr class="mdc-data-table__header-row">
@@ -34,11 +34,11 @@
         </thead>
         <tbody class="mdc-data-table__content">
             <h3>filler</h3>
-            <h2 style="text-align:center">Completed Books</h2>
+            <h2 style="text-align:center; color: indigo; font-family:'Roboto', sans-serif;">Completed Books</h2>
             {{#each Book }}
             {{#if dataValues.have_read }}
             <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">{{dataValues.title}}</td>
+                <td class="mdc-data-table__cell" width="20px">{{dataValues.title}}</td>
                 <td class="mdc-data-table__cell">{{dataValues.author}}</td>
                 <td class="mdc-data-table__cell"><button type="button" class="update-unread-btn"
                         data-id="{{dataValues.id}}" data-readstatus="{{unread}}">Haven't Read Yet!</button></td>
