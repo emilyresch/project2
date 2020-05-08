@@ -16,8 +16,7 @@ body {
     background-color: #222222;
 }
 
-/* data tables style!*/
-/* do not edit! */
+
 .header-div {
     position: relative;
 }
@@ -28,36 +27,18 @@ body {
     color: red;
 }
 
-/* .tables-title {
-    margin-top: 5em;
-} */
-
-.container-tables {
-    display: grid;
-    justify-content: center;
-    grid-column-gap: 50px;
-    grid-template-columns: auto auto;
-}
 
 .mdc-text-field {
     background-color: white;
 }
 
-.mdc-data-table {
+/* .mdc-data-table {
     /* margin-top: 5em; */
-    padding: 0px 50px;
+    /* padding: 0px 50px; 
     
-}
+} */ 
 
-.table1 {
-     grid-column-start: 1;
-   
-}
 
-.table2 {
-    grid-column-start: 4;
-  
-}
 #sign-form{
     padding-top: 10%;
 }
@@ -81,4 +62,8 @@ body {
 
 p{
     font-size: smaller;
+}
+
+h2 {
+    font-family:'Roboto', sans-serif;
 }
