@@ -55,6 +55,7 @@
         var imageElement = document.createElement("img");
         imageElement.setAttribute("class", "imageAttribute");
         imageElement.setAttribute("src",bookImage);
+        imageElement.setAttribute('style', 'height:auto'); //
         divColumn.appendChild(imageElement);
 
         var divElement = document.createElement("div");
