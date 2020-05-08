@@ -9,6 +9,7 @@ $("#search-section").css({ opacity: 0, visibility: "visible" }).animate({ opacit
 //search button onclick event
 searchButton.on("click", function (event) {
     event.preventDefault();
+    $(".newCard").remove();
     console.log("heiii");
     var title = searchBook.val().trim();
 
@@ -31,8 +32,6 @@ function searchforBook(title) {
 function getBook(bookTitle) {
     $.get("/api/search/" + bookTitle).then(function (bookdata) {
         // console.log(bookTitle);
-        console.log(bookdata);
-
         for (var i = 0; i < bookdata.length; i++) {
             var title = bookdata[i].volumeInfo.title;
             var author = bookdata[i].volumeInfo.authors;
@@ -52,6 +51,7 @@ function getBook(bookTitle) {
 
             var imageElement = document.createElement("img");
             imageElement.setAttribute("class", "imageAttribute");
+            imageElement.setAttribute('style', 'height:auto'); //
             imageElement.setAttribute("src", bookImage);
             divColumn.appendChild(imageElement);
 
