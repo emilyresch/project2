@@ -22,6 +22,8 @@ No installation required. Navigate to the [Heroku link](#<https://fierce-caverns
 ## Usage
 
 1. User is first greeted with the sign in/up screen. If user has not signed in yet, click sign up after inputting username and password credentials.
+![Image of signin](/screenshots/signin-page.png)
+![Image of incorrect](/screenshots/incorrect-signin.png)
 
 2. After successful sign up, the user is now greeted with the search page. On the top right of the navigation bar, click on the search form and type the name of the book or author. Afterwards, click on the search icon.
 
@@ -32,8 +34,9 @@ No installation required. Navigate to the [Heroku link](#<https://fierce-caverns
     * Mark the book as read by clicking on the bookmark icon.
 
 4. In the navigation bar, the wishlist and marked-as-read lists are available on the top right. Simply click on the buttons to access the lists.
-
+![Image of search wishlist](/screenshots/wishlist.png)
 5. Dark mode can be enabled or disabled from any page by clicking on the moon icon.
+![Image of search darkmode](/screenshots/darkmode.png)
 
 6. To sign out, click on the home icon on the top right of the navigation bar.
 
