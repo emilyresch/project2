@@ -17,53 +17,55 @@
     </div>
 </header>
 
-<div class="mdc-card" id="sign-form" style="max-width:600px; margin-left:auto; margin-right:auto; padding:16px">
+<div id="login-section" style="visibility:hidden">
+    <div class="mdc-card" id="sign-form" style="max-width:600px; margin-left:auto; margin-right:auto; padding:16px;">
 
-    <!-- Username -->
-    <h3>Filler</h3>
-    <h2 style="text-align:center">Get Started With Bookshelf!</h2>
-    <h4>Username</h4>
-    <label class="mdc-text-field mdc-text-field--outlined">
-        <input type="text" class="mdc-text-field__input" id="user-input" aria-labelledby="my-label-id">
-        <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-                <span class="mdc-floating-label active"></span>
+        <!-- Username -->
+        <h3>Filler</h3>
+        <h2 style="text-align:center">Get Started With Bookshelf!</h2>
+        <h4>Username</h4>
+        <label class="mdc-text-field mdc-text-field--outlined">
+            <input type="text" class="mdc-text-field__input" id="user-input" aria-labelledby="my-label-id">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label active"></span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <span class="mdc-notched-outline__trailing"></span>
-        </span>
-    </label>
+        </label>
 
-    <!-- Password -->
-    <h4>Password</h4>
-    <label class="mdc-text-field mdc-text-field--outlined">
-        <input type="text" class="mdc-text-field__input" id="password-input" aria-labelledby="my-label-id">
-        <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-                <span class="mdc-floating-label active"></span>
+        <!-- Password -->
+        <h4>Password</h4>
+        <label class="mdc-text-field mdc-text-field--outlined">
+            <input type="text" class="mdc-text-field__input" id="password-input" aria-labelledby="my-label-id">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label active"></span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <span class="mdc-notched-outline__trailing"></span>
-        </span>
-    </label>
+        </label>
 
-    <div class="mdc-touch-target-wrapper" style="margin:auto">
-        <!-- Sign up button-->
-        <button class="mdc-button mdc-button--touch" id="signUpButton">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Sign Up</span>
-            <div class="mdc-button__touch"></div>
-        </button>
+        <div class="mdc-touch-target-wrapper" style="margin:auto">
+            <!-- Sign up button-->
+            <button class="mdc-button mdc-button--touch" id="signUpButton">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Sign Up</span>
+                <div class="mdc-button__touch"></div>
+            </button>
 
-        <!-- Sign in button-->
-        <button class="mdc-button mdc-button--touch" id="loginButton">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Sign In</span>
-            <div class="mdc-button__touch"></div>
-        </button>
+            <!-- Sign in button-->
+            <button class="mdc-button mdc-button--touch" id="loginButton">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Sign In</span>
+                <div class="mdc-button__touch"></div>
+            </button>
+        </div>
     </div>
+
+    <p id="signin-message"></p>
+
 </div>
-
-<p id="signin-error-message">Incorrect username or password!</p>
-
 <!-- Results page -->
