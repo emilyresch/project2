@@ -9,14 +9,17 @@
         event.preventDefault();
         console.log("heiii");
         var title = searchBook.val().trim();
-        // if(!bookName){
-        //     return;
-        // }
-
         searchforBook(title);
-        
-        // bookName.val("");
     })
+
+    $("#inputText").keypress(function(event){
+        var keyCode = (event.keyCode ? event.keyCode : event.which);
+        if(keyCode == '13'){
+            var title = searchBook.val().trim();
+            searchforBook(title);
+        }
+    })
+
     function searchforBook(title){
       console.log(title);
         $.post("/api/booksearch/title",{
@@ -37,72 +40,87 @@
           var author = bookdata[i].volumeInfo.authors;
           var description = bookdata[i].volumeInfo.description;
           var buyLink = bookdata[i].saleInfo.buyLink;
-        //   console.log(buyLink);
+          var bookImage = bookdata[i].volumeInfo.imageLinks.thumbnail;
+        //   console.log(bookImage);
           
 
-            var divElement = document.createElement("div");
-            divElement.setAttribute("class","mdc-card newCard");
-            document.body.appendChild(divElement);
+        var divRow = document.createElement("div");
+        divRow.setAttribute("class","mdc-card--outlined newCard mdc-layout-grid__inner");
+        document.body.appendChild(divRow);
 
-            var titleElement = document.createElement("h4");
-            titleElement.setAttribute("class","attributes");
-            titleElement.textContent = title;
-            divElement.appendChild(titleElement);
+        var divColumn = document.createElement("div");
+        divColumn.setAttribute("class", "mdc-layout-grid__cell--span-2");
+        divRow.appendChild(divColumn);
 
-            var authorElement = document.createElement("h5");
-            authorElement.setAttribute("id","authorAttribute");
-            authorElement.setAttribute("class","attributes");
-            authorElement.textContent = author;
-            divElement.appendChild(authorElement);
+        var imageElement = document.createElement("img");
+        imageElement.setAttribute("class", "imageAttribute");
+        imageElement.setAttribute("src",bookImage);
+        divColumn.appendChild(imageElement);
 
-            var descriptionElement = document.createElement("p");
-            descriptionElement.setAttribute("id","descriptionAttribute");
-            descriptionElement.setAttribute("class","attributes");
-            descriptionElement.textContent = description;
-            divElement.appendChild(descriptionElement);
+        var divElement = document.createElement("div");
+        divElement.setAttribute("class","mdc-layout-grid__cell--span-10");
+        divRow.appendChild(divElement);
 
 
-            var actionsDiv = document.createElement("div");
-            actionsDiv.setAttribute("class","mdc-card__action-icons");
-            divElement.appendChild(actionsDiv);
+        var titleElement = document.createElement("h4");
+        titleElement.setAttribute("class","attributes");
+        titleElement.textContent = title;
+        divElement.appendChild(titleElement);
 
-            if(buyLink == undefined || buyLink == ""){
-                var buyElement = document.createElement("p");
-                buyElement.setAttribute("class","attributes");
-                buyElement.textContent = "Not available";
-                actionsDiv.appendChild(buyElement);
-            }
-            else{
-                var buyElement = document.createElement("a");
-                buyElement.setAttribute("href",buyLink);
-                buyElement.setAttribute("target","_blank");
-                buyElement.setAttribute("class","attributes");
-                buyElement.textContent = "Buy Book";
-                actionsDiv.appendChild(buyElement);
-            }
+        var authorElement = document.createElement("h5");
+        authorElement.setAttribute("id","authorAttribute");
+        authorElement.setAttribute("class","attributes");
+        authorElement.textContent = author;
+        divElement.appendChild(authorElement);
 
-            var bookmarkButton = document.createElement("button");
-            bookmarkButton.setAttribute("class","read-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
-            bookmarkButton.setAttribute("data-id",i);
-            bookmarkButton.setAttribute("data-author", bookdata[i].volumeInfo.authors);
-            bookmarkButton.setAttribute("data-title", bookdata[i].volumeInfo.title);
-            bookmarkButton.setAttribute("aria-label","Mark as Read");
-            bookmarkButton.textContent = "bookmark_border";
-            actionsDiv.appendChild(bookmarkButton);
+        var descriptionElement = document.createElement("p");
+        descriptionElement.setAttribute("id","descriptionAttribute");
+        descriptionElement.setAttribute("class","attributes");
+        descriptionElement.textContent = description;
+        divElement.appendChild(descriptionElement);
 
-            var wishButton = document.createElement("button");
-            wishButton.setAttribute("class","wishlist-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
-            wishButton.setAttribute("data-id",i);
-            wishButton.setAttribute("data-author", bookdata[i].volumeInfo.authors)
-            wishButton.setAttribute("data-title", bookdata[i].volumeInfo.title)
-            wishButton.setAttribute("aria-label","Wishlist");
-            wishButton.textContent = "star_border";
-            actionsDiv.appendChild(wishButton);
-            
 
+        var actionsDiv = document.createElement("div");
+        actionsDiv.setAttribute("class","mdc-card__action-icons");
+        divElement.appendChild(actionsDiv);
+
+        if(buyLink == undefined || buyLink == ""){
+            var buyElement = document.createElement("p");
+            buyElement.setAttribute("class","attributes");
+            buyElement.textContent = "Not available";
+            actionsDiv.appendChild(buyElement);
         }
-      })
+        else{
+            var buyElement = document.createElement("a");
+            buyElement.setAttribute("href",buyLink);
+            buyElement.setAttribute("target","_blank");
+            buyElement.setAttribute("class","attributes");
+            buyElement.textContent = "Buy Book";
+            actionsDiv.appendChild(buyElement);
+        }
+
+        var bookmarkButton = document.createElement("button");
+        bookmarkButton.setAttribute("class","read-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
+        bookmarkButton.setAttribute("data-id",i);
+        bookmarkButton.setAttribute("data-author", bookdata[i].volumeInfo.authors);
+        bookmarkButton.setAttribute("data-title", bookdata[i].volumeInfo.title);
+        bookmarkButton.setAttribute("aria-label","Mark as Read");
+        bookmarkButton.textContent = "bookmark_border";
+        actionsDiv.appendChild(bookmarkButton);
+
+        var wishButton = document.createElement("button");
+        wishButton.setAttribute("class","wishlist-btn material-icons mdc-icon-button mdc-card__action mdc-card__action--icon");
+        wishButton.setAttribute("data-id",i);
+        wishButton.setAttribute("data-author", bookdata[i].volumeInfo.authors)
+        wishButton.setAttribute("data-title", bookdata[i].volumeInfo.title)
+        wishButton.setAttribute("aria-label","Wishlist");
+        wishButton.textContent = "star_border";
+        actionsDiv.appendChild(wishButton);
+        
+
     }
+  })
+}
 
 //click star to add to wishlist (Database)
 $(document).on("click", ".wishlist-btn", function (event) {
