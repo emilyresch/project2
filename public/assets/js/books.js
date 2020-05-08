@@ -4,7 +4,7 @@ var addWishlist = $('.wishlist-btn');
 var addComplete = $('.read-btn');
 var searchBook = $(".booksearch");
 
-$("#search-section").css({opacity:0, visibility:"visible"}).animate({opacity:1});
+$("#search-section").css({ opacity: 0, visibility: "visible" }).animate({ opacity: 1 });
 
 //search button onclick event
 searchButton.on("click", function (event) {
@@ -38,12 +38,26 @@ function getBook(bookTitle) {
             var author = bookdata[i].volumeInfo.authors;
             var description = bookdata[i].volumeInfo.description;
             var buyLink = bookdata[i].saleInfo.buyLink;
-            //   console.log(buyLink);
+            var bookImage = bookdata[i].volumeInfo.imageLinks.thumbnail;
+            //   console.log(bookImage);
+
+
+            var divRow = document.createElement("div");
+            divRow.setAttribute("class", "mdc-card newCard mdc-layout-grid__inner");
+            document.body.appendChild(divRow);
+
+            var divColumn = document.createElement("div");
+            divColumn.setAttribute("class", "mdc-layout-grid__cell--span-2");
+            divRow.appendChild(divColumn);
+
+            var imageElement = document.createElement("img");
+            imageElement.setAttribute("class", "imageAttribute");
+            imageElement.setAttribute("src", bookImage);
+            divColumn.appendChild(imageElement);
 
             var divElement = document.createElement("div");
-            divElement.setAttribute("class", "mdc-card newCard");
-            divElement.setAttribute("style", "padding:16px")
-            document.body.appendChild(divElement);
+            divElement.setAttribute("class", "mdc-layout-grid__cell--span-10");
+            divRow.appendChild(divElement);
 
             var titleElement = document.createElement("h4");
             titleElement.setAttribute("class", "attributes");
@@ -132,6 +146,7 @@ function getBook(bookTitle) {
             wishButton.setAttribute("aria-label", "Wishlist");
             wishButton.textContent = "star_border";
             actionsDiv.appendChild(wishButton);
+
 
         }
     })

@@ -82,3 +82,12 @@ body {
 p{
     font-size: smaller;
 }
+
+.imageAttribute{
+    margin-left: 25%;
+    margin-top: 15%;
+    height: 75%;
+    width: 75%;
+    margin-bottom: 5%;
+    /* size: 100%; */
+}
